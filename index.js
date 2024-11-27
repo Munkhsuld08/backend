@@ -1,15 +1,24 @@
 import express from "express";
 
+const PORT = 3333;
 const app = express();
 
-app.get("/",(req, res) => {
-    res.send("hello world!");
-});
+const todos = [
+  {
+    id: 1,
+    title: "Wake up",
+  },
+];
 
 app.get("/todos", (req, res) => {
-    res.send([]);
+  res.send(todos);
 });
 
-app.listen(3000, () => {
-    console.log("server is running on http://localhost:3000");
+app.post("/todos", (req, res) => {
+  const input = req.body;
+  res.send(input);
+});
+
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
